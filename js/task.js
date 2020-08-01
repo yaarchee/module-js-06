@@ -210,22 +210,32 @@ console.log("======  T10  ======");
 
   const getSortedUniqueSkills = users => {
   // твой код
-     return users.reduce((accSkills, user) =>{
-       if(accSkills.length !==0){
-         user.skills.forEach(skill =>{
-           if(!accSkills.includes(skill)){
-             accSkills.push(skill);
-           }
 
-         });
-         return accSkills;
-       }else{
-         accSkills.push(...user.skills);
-         return accSkills;
-       }
+    const set = new Set(users.reduce((acc, user)=>{
+      acc.push(...user.skills);
+      return acc;
+    }, []).sort());
+
+    return set;
 
 
-    }, []).sort();
+
+  //    return users.reduce((accSkills, user) =>{
+  //      if(accSkills.length !==0){
+  //        user.skills.forEach(skill =>{
+  //          if(!accSkills.includes(skill)){
+  //            accSkills.push(skill);
+  //          }
+  //
+  //        });
+  //        return accSkills;
+  //      }else{
+  //        accSkills.push(...user.skills);
+  //        return accSkills;
+  //      }
+  //
+  //
+  //   }, []).sort();
 };
 
 console.log(getSortedUniqueSkills(users));
